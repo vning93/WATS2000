@@ -15,7 +15,8 @@ module.exports = function (grunt) {
 
   // Automatically load required grunt tasks
   require('jit-grunt')(grunt, {
-      useminPrepare: 'grunt-usemin'
+      useminPrepare: 'grunt-usemin',
+      buildcontrol: 'grunt-build-control'
   });
 
   // Configurable paths
@@ -29,6 +30,25 @@ module.exports = function (grunt) {
 
     // Project settings
     config: config,
+
+    // Start new definitions
+
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      pages: {
+        options: {
+          remote: 'https://github.com/vning93/WATS2000.git',
+          branch: 'gh-pages'
+        }
+      }
+    },
+
+    // End new definitions
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
